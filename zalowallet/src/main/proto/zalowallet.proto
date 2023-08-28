@@ -1,0 +1,51 @@
+syntax = "proto3";
+option java_package = "com.zalowallet.protobuf";
+
+service ZalopayService {
+  rpc topUpWallet(TopUpWalletRequest) returns (TopUpWalletResponse);
+  rpc withdrawWallet(WithdrawWalletRequest) returns (WithdrawWalletResponse);
+  rpc revertTransferWallet(RevertTransferWalletRequest) returns (RevertTransferWalletResponse);
+}
+
+message TopUpWalletRequest {
+  string numberAcc = 1;
+  int64 amount = 2;
+  string transId = 3;
+}
+
+message TopUpWalletResponse {
+  int32 status = 1;
+  Result result = 2;
+  message Result {
+    string transId = 1;
+    string status = 2;
+  }
+}
+
+message WithdrawWalletRequest {
+  int32 numberAcc = 1;
+  int64 amount = 2;
+  string transId = 3;
+}
+
+message WithdrawWalletResponse {
+  int32 status = 1;
+  Result result = 2;
+  message Result {
+    string transId = 1;
+    string status = 2;
+  }
+}
+
+message RevertTransferWalletRequest {
+  string transId = 3;
+}
+
+message RevertTransferWalletResponse {
+  int32 status = 1;
+  Result result = 2;
+  message Result {
+    string transId = 1;
+    string status = 2;
+  }
+}
