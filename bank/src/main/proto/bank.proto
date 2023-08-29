@@ -3,7 +3,8 @@ option java_package = "com.bank.protobuf";
 
 service BankService {
   rpc withdrawBank(WithdrawBankRequest) returns (WithdrawBankResponse);
-  rpc refundBank(RefundBankRequest) returns (RefundBankResponse);
+  rpc topUpBank(TopUpBankRequest) returns (TopUpBankResponse);
+  rpc revertTransferBank(RevertTransferBankRequest)returns (RevertTransferBankResponse);
 }
 message WithdrawBankRequest {
   string number_acc = 1;
@@ -11,7 +12,7 @@ message WithdrawBankRequest {
 }
 
 message WithdrawBankResponse {
-  string status = 1;
+  int32 status = 1;
   Result result = 2;
   message Result {
     string transId = 1;
@@ -19,13 +20,26 @@ message WithdrawBankResponse {
   }
 }
 
-message RefundBankRequest {
+message TopUpBankRequest {
   string number_acc = 1;
   int64 amount = 2;
 }
 
-message RefundBankResponse {
-  string status = 1;
+message TopUpBankResponse {
+  int32 status = 1;
+  Result result = 2;
+  message Result {
+    string transId = 1;
+    string status = 2;
+  }
+}
+
+message RevertTransferBankRequest {
+  string transId = 3;
+}
+
+message RevertTransferBankResponse {
+  int32 status = 1;
   Result result = 2;
   message Result {
     string transId = 1;
