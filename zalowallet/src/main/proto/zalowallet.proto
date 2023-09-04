@@ -5,6 +5,7 @@ service ZalopayService {
   rpc topUpWallet(TopUpWalletRequest) returns (TopUpWalletResponse);
   rpc withdrawWallet(WithdrawWalletRequest) returns (WithdrawWalletResponse);
   rpc revertTransferWallet(RevertTransferWalletRequest) returns (RevertTransferWalletResponse);
+  rpc getStatusTransaction(GetStatusTransactionRequest) returns (GetStatusTransactionResponse);
 }
 
 message TopUpWalletRequest {
@@ -38,10 +39,23 @@ message WithdrawWalletResponse {
 }
 
 message RevertTransferWalletRequest {
-  string transId = 3;
+  string transId = 1;
 }
 
 message RevertTransferWalletResponse {
+  int32 status = 1;
+  Result result = 2;
+  message Result {
+    string transId = 1;
+    string status = 2;
+  }
+}
+
+message GetStatusTransactionRequest {
+  string transId = 1;
+}
+
+message GetStatusTransactionResponse {
   int32 status = 1;
   Result result = 2;
   message Result {

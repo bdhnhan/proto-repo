@@ -5,6 +5,7 @@ service BankService {
   rpc withdrawBank(WithdrawBankRequest) returns (WithdrawBankResponse);
   rpc topUpBank(TopUpBankRequest) returns (TopUpBankResponse);
   rpc revertTransferBank(RevertTransferBankRequest)returns (RevertTransferBankResponse);
+  rpc getStatusTransaction(GetStatusTransactionRequest) returns (GetStatusTransactionResponse);
 }
 message WithdrawBankRequest {
   string number_acc = 1;
@@ -39,6 +40,19 @@ message RevertTransferBankRequest {
 }
 
 message RevertTransferBankResponse {
+  int32 status = 1;
+  Result result = 2;
+  message Result {
+    string transId = 1;
+    string status = 2;
+  }
+}
+
+message GetStatusTransactionRequest {
+  string transId = 1;
+}
+
+message GetStatusTransactionResponse {
   int32 status = 1;
   Result result = 2;
   message Result {
