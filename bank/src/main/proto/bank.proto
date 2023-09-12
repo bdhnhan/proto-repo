@@ -2,17 +2,17 @@ syntax = "proto3";
 option java_package = "com.bank.protobuf";
 
 service BankService {
-  rpc withdrawBank(WithdrawBankRequest) returns (WithdrawBankResponse);
-  rpc topUpBank(TopUpBankRequest) returns (TopUpBankResponse);
+  rpc deductMoneyBank(DeductMoneyBankRequest) returns (DeductMoneyBankResponse);
+  rpc addMoneyBank(AddMoneyBankRequest) returns (AddMoneyBankResponse);
   rpc revertTransferBank(RevertTransferBankRequest)returns (RevertTransferBankResponse);
   rpc getStatusTransaction(GetStatusTransactionRequest) returns (GetStatusTransactionResponse);
 }
-message WithdrawBankRequest {
+message DeductMoneyBankRequest {
   string number_acc = 1;
   int64 amount = 2;
 }
 
-message WithdrawBankResponse {
+message DeductMoneyBankResponse {
   int32 status = 1;
   Result result = 2;
   message Result {
@@ -21,12 +21,12 @@ message WithdrawBankResponse {
   }
 }
 
-message TopUpBankRequest {
+message AddMoneyBankRequest {
   string number_acc = 1;
   int64 amount = 2;
 }
 
-message TopUpBankResponse {
+message AddMoneyBankResponse {
   int32 status = 1;
   Result result = 2;
   message Result {
