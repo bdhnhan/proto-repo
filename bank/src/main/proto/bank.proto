@@ -10,6 +10,7 @@ service BankService {
 message DeductMoneyBankRequest {
   string number_acc = 1;
   int64 amount = 2;
+  string keySource = 3;
 }
 
 message DeductMoneyBankResponse {
@@ -24,6 +25,7 @@ message DeductMoneyBankResponse {
 message AddMoneyBankRequest {
   string number_acc = 1;
   int64 amount = 2;
+  string keySource = 3;
 }
 
 message AddMoneyBankResponse {
@@ -36,7 +38,7 @@ message AddMoneyBankResponse {
 }
 
 message RevertTransferBankRequest {
-  string transId = 3;
+  string transId = 1;
 }
 
 message RevertTransferBankResponse {
@@ -50,6 +52,7 @@ message RevertTransferBankResponse {
 
 message GetStatusTransactionRequest {
   string transId = 1;
+  string keySource = 2;
 }
 
 message GetStatusTransactionResponse {
